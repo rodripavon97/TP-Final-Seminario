@@ -24,32 +24,36 @@ class Dekker:
 dekker_lock = Dekker()
 
 def process_0():
-    # Sección no crítica
-    # ...
+    i = 0
+    while i < 3:
+        # Sección no crítica
 
-    # Entrar a la sección crítica
-    dekker_lock.lock(0)
-    # Sección crítica
-    print("Process 0 is in critical section.")
-    # Salir de la sección crítica
-    dekker_lock.unlock(0)
+        # Entrar a la sección crítica
+        dekker_lock.lock(0)
+        # Sección crítica
+        print("Process 0 is in critical section.")
+        # Salir de la sección crítica
+        dekker_lock.unlock(0)
+        print("Process 0 is outside critical section.")
 
-    # Sección no crítica
-    # ...
+        # Sección no crítica
+        i += 1
 
 def process_1():
-    # Sección no crítica
-    # ...
+    i = 0
+    while i < 3:
+        # Sección no crítica
 
-    # Entrar a la sección crítica
-    dekker_lock.lock(1)
-    # Sección crítica
-    print("Process 1 is in critical section.")
-    # Salir de la sección crítica
-    dekker_lock.unlock(1)
+        # Entrar a la sección crítica
+        dekker_lock.lock(1)
+        # Sección crítica
+        print("Process 1 is in critical section.")
+        # Salir de la sección crítica
+        dekker_lock.unlock(1)
+        print("Process 1 is outside critical section.")
 
-    # Sección no crítica
-    # ...
+        # Sección no crítica
+        i += 1
 
 # Crear hilos para los dos procesos
 thread_0 = threading.Thread(target=process_0)

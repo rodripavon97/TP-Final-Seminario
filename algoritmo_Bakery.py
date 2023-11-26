@@ -28,18 +28,20 @@ num_processes = 3
 bakery_lock = Bakery(num_processes)
 
 def process(process_id):
-    # Sección no crítica
-    # ...
+    i = 0
+    while i < 3:
+        # Sección no crítica
 
-    # Entrar a la sección crítica
-    bakery_lock.lock(process_id)
-    # Sección crítica
-    print(f"Process {process_id} is in critical section.")
-    # Salir de la sección crítica
-    bakery_lock.unlock(process_id)
+        # Entrar a la sección crítica
+        bakery_lock.lock(process_id)
+        # Sección crítica
+        print(f"Process {process_id} is in critical section.")
+        # Salir de la sección crítica
+        bakery_lock.unlock(process_id)
+        print(f"Process {process_id} is outside critical section.")
 
-    # Sección no crítica
-    # ...
+        # Sección no crítica
+        i += 1
 
 # Crear hilos para los procesos
 threads = [threading.Thread(target=process, args=(i,)) for i in range(num_processes)]
